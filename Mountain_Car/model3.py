@@ -17,13 +17,13 @@ class DQNAgent:
         self.action_size = action_size
         self.memory = deque(maxlen=2000)
         self.gamma = 0.95    # discounting factor
-        #self.epsilon = 1.0  # exploration rate
+        self.epsilon = 1.0  # exploration rate
         self.epsilon_min = 0.01 #epsilon  tolerance
         #self.epsilon_decay = 0.995
         self.learning_rate = 0.0025
         self.model = self._build_model()
         self.t = 0 #number of steps
-        self.checkpointer = ModelCheckpoint(filepath='saved_models/weights.best.model1.hdf5',
+        self.checkpointer = ModelCheckpoint(filepath='saved_models/weights.best.model3.hdf5',
                                             verbose=0, save_best_only=True)
 
     def _build_model(self):
