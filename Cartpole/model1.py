@@ -20,8 +20,7 @@ class DQNAgent:
         self.epsilon_decay = 0.995
         self.learning_rate = 0.001
         self.model = self._build_model()
-        self.checkpointer = ModelCheckpoint(filepath='saved_models/weights.best.model1.hdf5',
-                               verbose=0, save_best_only=True)
+        self.checkpointer = ModelCheckpoint(filepath='saved_models/weights.best.model1.hdf5', verbose=0)
 
     def _build_model(self):
         # Neural Net for Deep-Q learning Model
