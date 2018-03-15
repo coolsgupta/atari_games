@@ -23,8 +23,7 @@ class DQNAgent:
         self.learning_rate = 0.0025
         self.model = self._build_model()
         self.t = 0 #number of steps
-        self.checkpointer = ModelCheckpoint(filepath='saved_models/weights.best.model3.hdf5',
-                                            verbose=0, save_best_only=True)
+        self.checkpointer = ModelCheckpoint(filepath='saved_models/weights.best.model3.hdf5',verbose=0)
 
     def _build_model(self):
         # Neural Net for Deep-Q learning Model
