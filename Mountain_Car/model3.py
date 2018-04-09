@@ -108,7 +108,7 @@ for e in range(EPISODES):
         if done:
             # print the score and break out of the loop
             print("episode: {}/{}, score: {}, e: {:.2}"
-                  .format(e, EPISODES, time, agent.epsilon))
+                  .format(e, EPISODES, time+1, agent.epsilon))
             break
 
     if len(agent.memory) > batch_size:
