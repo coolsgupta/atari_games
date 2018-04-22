@@ -1,0 +1,26 @@
+Source:
+https://keon.io/deep-q-learning/
+
+Beat Atari with Deep Reinforcement Learning! (Part 0: Intro to RL)
+https://becominghuman.ai/lets-build-an-atari-ai-part-0-intro-to-rl-9b2c5336e0ec
+
+Beat Atari with Deep Reinforcement Learning! (Part 1: DQN)
+https://becominghuman.ai/lets-build-an-atari-ai-part-1-dqn-df57e8ff3b26
+
+Beat Atari with Deep Reinforcement Learning! (Part 2: DQN improvements)
+https://becominghuman.ai/beat-atari-with-deep-reinforcement-learning-part-2-dqn-improvements-d3563f665a2c
+
+Simple Reinforcement Learning with Tensorflow Part 0: Q-Learning with Tables and Neural Networks
+https://medium.com/emergent-future/simple-reinforcement-learning-with-tensorflow-part-0-q-learning-with-tables-and-neural-networks-d195264329d0
+
+LET’S MAKE A DQN: THEORY
+https://jaromiru.com/2016/09/27/lets-make-a-dqn-theory/
+
+Playing Atari Games with Deep Reinforcement Learning
+1. https://cse.iitk.ac.in/users/cs365/2015/_submissions/varshajn/report.pdf
+2. https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf
+3. https://arxiv.org/abs/1312.5602
+
+Arcade-Learning-Environment
+https://github.com/mgbellemare/Arcade-Learning-Environment
+
