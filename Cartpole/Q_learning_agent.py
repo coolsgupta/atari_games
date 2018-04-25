@@ -1,10 +1,11 @@
 import random
 import gym
-import numpy as np
 from collections import deque
 import math
-
+#from .evaluation import evaluate
+import json
 EPISODES = 1000
+import matplotlib.pyplot as plt
 
 
 class DQNAgent:
@@ -32,8 +33,9 @@ class DQNAgent:
             self.epsilon = math.exp(-self.learning_rate * (self.episode))
 
     def build_state(self, observed_state):
-        state = (observed_state[0],observed_state[1],observed_state[2],observed_state[3])
+        state = (str(observed_state[0]),str(observed_state[1]),str(observed_state[2]),str(observed_state[3]))
 #        state = (''.join(observed_state[0]),''.join(observed_state[1]),''.join(observed_state[2]),''.join(observed_state[3]))
+        state = ''.join(state)
         return state
 
     def get_maxQ(self,state):
@@ -92,11 +94,13 @@ env = gym.make('CartPole-v1')
 state_size = env.observation_space.shape[0]
 action_size = env.action_space.n
 agent = DQNAgent(state_size, action_size)
-# agent.load("./save/cartpole-dqn.h5")
 done = False
 batch_size = 32
+scores = []
+result_file = open('results.txt','w+')
 # Iterate the game
 agent.episode = 1
+
 while agent.epsilon > agent.epsilon_min:
     # reset state in the beginning of each game
     state = agent.build_state(env.reset())
@@ -105,7 +109,7 @@ while agent.epsilon > agent.epsilon_min:
     # the more time_t the more score
     for time in range(500):
         #for GUI
-        env.render()
+        #env.render()
 
         #adding state to Q-table
         agent.createQ(state)
@@ -130,8 +134,25 @@ while agent.epsilon > agent.epsilon_min:
         # done becomes True when the game ends
         # ex) The agent drops the pole
         if done:
+            scores.append(time)
             # print the score and break out of the loop
             print("episode: {}/{}, score: {}, e: {:.2}"
                   .format(agent.episode, EPISODES, time, agent.epsilon))
+            result = ('Episode :', str(agent.episode), ' score:',str(time), ' epsilon:', str(agent.epsilon),'\n')
+            result_file.write(''.join(result))
+
             break
     agent.replay()
+plt.xlabel('Epsiode number')
+plt.ylabel('Average score per episode')
+average_scores = []
+sum = 0
+for x in range(len(scores)):
+    sum += scores[x]
+    average_scores.append(sum/(x+1))
+plt.plot(range((agent.episode-1)), average_scores)
+agent.Q_table = {'Q_table': agent.Q_table}
+with open('Q_table.txt', 'w+') as Q_table_file:
+    Q_table_file.write(json.dumps(agent.Q_table))
+#evaluate.average_score_per_episode(agent.episode, scores)
+#evaluate.total_score(agent.episode, scores)

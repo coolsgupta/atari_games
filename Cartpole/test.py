@@ -1,6 +1,6 @@
 import gym
 
-env = gym.make('CartPole-v1')
+env = gym.make('MountainCar-v0')
 state = env.reset()
 print(state)
 print(state[0])
