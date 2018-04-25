@@ -105,7 +105,9 @@ agent.episode = 1
 
 while agent.epsilon > agent.epsilon_min:
     # reset state in the beginning of each game
-    state = agent.build_state(env.reset())
+    state = env.reset()
+    max_score = state[0]
+    state = agent.build_state(state)
     # time_t represents each frame of the game
     # Our goal is to keep the pole upright as long as possible until score of 500
     # the more time_t the more score
@@ -123,6 +125,8 @@ while agent.epsilon > agent.epsilon_min:
         # Reward is 1 for every frame the pole survived
         next_state, reward, done, _ = env.step(action)
         reward = reward if not done else -10
+        if next_state[0]>max_score:
+            max_score = next_state[0]
         next_state = agent.build_state(next_state)
 
         # Remember the previous state, action, reward, and done
@@ -136,11 +140,11 @@ while agent.epsilon > agent.epsilon_min:
         # done becomes True when the game ends
         # ex) The agent drops the pole
         if done:
-            scores.append(time)
+            scores.append(max_score)
             # print the score and break out of the loop
-            print("episode: {}/{}, score: {}, e: {:.2}"
-                  .format(agent.episode, EPISODES, time, agent.epsilon))
-            result = ('Episode :', str(agent.episode), ' score:',str(time), ' epsilon:', str(agent.epsilon),'\n')
+            print("episode: {}/{}, score: {:.3}, e: {:.2}"
+                  .format(agent.episode, EPISODES, max_score, agent.epsilon))
+            result = ('Episode :', str(agent.episode), ' score:',str(max_score), ' epsilon:', str(agent.epsilon),'\n')
             result_file.write(''.join(result))
 
             break

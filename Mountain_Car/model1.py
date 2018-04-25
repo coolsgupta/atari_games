@@ -78,6 +78,7 @@ for e in range(EPISODES):
     # reset state in the beginning of each game
     state = env.reset()
     state = np.reshape(state, [1, state_size])
+    max_score = state[0]
     # time_t represents each frame of the game
     # Our goal is to keep the pole upright as long as possible until score of 500
     # the more time_t the more score
@@ -102,10 +103,12 @@ for e in range(EPISODES):
 
         # done becomes True when the game ends
         # ex) The agent drops the pole
+        if state[0]>max_score:
+            max_score = state[0]
         if done:
             # print the score and break out of the loop
             print("episode: {}/{}, score: {}, e: {:.2}"
-                  .format(e, EPISODES, time, agent.epsilon))
+                  .format(e, EPISODES, max_score * 200, agent.epsilon))
             break
 
     if len(agent.memory) > batch_size:
