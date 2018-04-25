@@ -19,7 +19,6 @@ https://jaromiru.com/2016/09/27/lets-make-a-dqn-theory/
 Playing Atari Games with Deep Reinforcement Learning
 1. https://cse.iitk.ac.in/users/cs365/2015/_submissions/varshajn/report.pdf
 2. https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf
-3. https://arxiv.org/abs/1312.5602
 
 Arcade-Learning-Environment
 https://github.com/mgbellemare/Arcade-Learning-Environment
