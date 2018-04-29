@@ -6,6 +6,7 @@ import math
 import json
 EPISODES = 1000
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 class DQNAgent:
@@ -35,8 +36,8 @@ class DQNAgent:
     def build_state(self, observed_state):
         #state = (str(observed_state[0]),str(observed_state[1]),str(observed_state[2]),str(observed_state[3]))
         state = []
-        for x in observed_state:
-            state.append(str(x))
+        for x in observed_state[0]:
+            state.append(str(round(x,8)))
         state = ''.join(state)
         return state
 
@@ -106,7 +107,8 @@ agent.episode = 1
 while agent.epsilon > agent.epsilon_min:
     # reset state in the beginning of each game
     state = env.reset()
-    max_score = state[0]
+    state = np.reshape(state, [1, state_size])
+    max_score = state[0][0]
     state = agent.build_state(state)
     # time_t represents each frame of the game
     # Our goal is to keep the pole upright as long as possible until score of 500
@@ -125,8 +127,9 @@ while agent.epsilon > agent.epsilon_min:
         # Reward is 1 for every frame the pole survived
         next_state, reward, done, _ = env.step(action)
         reward = reward if not done else -10
-        if next_state[0]>max_score:
-            max_score = next_state[0]
+        next_state = np.reshape(next_state, [1, state_size])
+        if next_state[0][0]>max_score:
+            max_score = next_state[0][0]
         next_state = agent.build_state(next_state)
 
         # Remember the previous state, action, reward, and done
@@ -140,10 +143,11 @@ while agent.epsilon > agent.epsilon_min:
         # done becomes True when the game ends
         # ex) The agent drops the pole
         if done:
-            scores.append(max_score)
+            scaled_score = ((max_score + 1.2)/1.8)*100
+            scores.append(scaled_score)
             # print the score and break out of the loop
             print("episode: {}/{}, score: {:.3}, e: {:.2}"
-                  .format(agent.episode, EPISODES, max_score, agent.epsilon))
+                  .format(agent.episode, EPISODES, scaled_score, agent.epsilon))
             result = ('Episode :', str(agent.episode), ' score:',str(max_score), ' epsilon:', str(agent.epsilon),'\n')
             result_file.write(''.join(result))
 
