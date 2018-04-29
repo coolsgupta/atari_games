@@ -2,14 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="189d345d-2cb8-4175-ba6f-f1c828604c4f" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/breakout/model.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Cartpole/random_guess.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Cartpole/saved_results/results_Q_cartpole.csv" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Cartpole/saved_results/results_Q_cartpole.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Cartpole/saved_results/results_random_guessing.csv" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Cartpole/saved_results/test_results_Q_learning_agent.csv" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/Cartpole/Q_learning_agent.py" afterPath="$PROJECT_DIR$/Cartpole/Q_learning_agent.py" />
-      <change beforePath="$PROJECT_DIR$/Cartpole/results.txt" afterPath="$PROJECT_DIR$/Cartpole/results.txt" />
-      <change beforePath="$PROJECT_DIR$/Mountain_Car/Q_learning_agent.py" afterPath="$PROJECT_DIR$/Mountain_Car/Q_learning_agent.py" />
-      <change beforePath="$PROJECT_DIR$/Mountain_Car/Q_table.txt" afterPath="$PROJECT_DIR$/Mountain_Car/Q_table.txt" />
-      <change beforePath="$PROJECT_DIR$/Mountain_Car/model1.py" afterPath="$PROJECT_DIR$/Mountain_Car/model1.py" />
-      <change beforePath="$PROJECT_DIR$/Mountain_Car/results.txt" afterPath="$PROJECT_DIR$/Mountain_Car/results.txt" />
+      <change beforePath="$PROJECT_DIR$/Cartpole/Q_table.txt" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,8 +23,30 @@
       <file leaf-file-name="Q_learning_agent.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Cartpole/Q_learning_agent.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1190">
-              <caret line="150" column="17" lean-forward="false" selection-start-line="150" selection-start-column="17" selection-end-line="150" selection-end-column="17" />
+            <state relative-caret-position="584">
+              <caret line="211" column="27" lean-forward="false" selection-start-line="211" selection-start-column="27" selection-end-line="211" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DQN_model_1.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Cartpole/DQN_model_1.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3044">
+              <caret line="173" column="17" lean-forward="false" selection-start-line="173" selection-start-column="17" selection-end-line="173" selection-end-column="17" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DQN_model_2.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Cartpole/DQN_model_2.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2982">
+              <caret line="150" column="0" lean-forward="false" selection-start-line="150" selection-start-column="0" selection-end-line="150" selection-end-column="0" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -69,6 +91,9 @@
         <option value="$PROJECT_DIR$/Mountain_Car/Q_learning_agent.py" />
         <option value="$PROJECT_DIR$/Mountain_Car/model1.py" />
         <option value="$PROJECT_DIR$/breakout/model.py" />
+        <option value="$PROJECT_DIR$/Cartpole/DQN_model_1.py" />
+        <option value="$PROJECT_DIR$/Cartpole/DQN_model_2.py" />
+        <option value="$PROJECT_DIR$/Cartpole/random_guess.py" />
         <option value="$PROJECT_DIR$/Cartpole/Q_learning_agent.py" />
       </list>
     </option>
@@ -96,6 +121,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -112,8 +139,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -121,6 +146,9 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\programming\Atari games\Cartpole\saved_results" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\programming\Atari games\Cartpole" />
     </key>
@@ -223,10 +251,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1932" height="1038" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2535809" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298969" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298969" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298969" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -239,7 +269,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -279,42 +308,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Mountain_Car/model1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2079">
-          <caret line="106" column="32" lean-forward="false" selection-start-line="105" selection-start-column="8" selection-end-line="106" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Cartpole/model1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1029">
-          <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Cartpole/model3.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="33" column="32" lean-forward="false" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Cartpole/model2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Cartpole/model1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1029">
-          <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Cartpole/model3.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
@@ -572,7 +565,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="163">
           <caret line="256" column="0" lean-forward="false" selection-start-line="256" selection-start-column="0" selection-end-line="256" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -584,19 +576,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Mountain_Car/results_DQN.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Mountain_Car/results_DQN.txt" />
     <entry file="file://$PROJECT_DIR$/Mountain_Car/model2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="371">
           <caret line="98" column="30" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="116" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -614,7 +598,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1995">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -622,7 +605,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="686">
           <caret line="125" column="30" lean-forward="true" selection-start-line="125" selection-start-column="30" selection-end-line="125" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -630,19 +612,60 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="287">
           <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cartpole/DQN_model_2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2982">
+          <caret line="150" column="0" lean-forward="false" selection-start-line="150" selection-start-column="0" selection-end-line="150" selection-end-column="0" />
           <folding>
-            <element signature="e#12#22#0" expanded="false" />
+            <element signature="e#0#13#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cartpole/random_guess.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="23" column="6" lean-forward="false" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#10#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cartpole/DQN_model_1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3044">
+          <caret line="173" column="17" lean-forward="false" selection-start-line="173" selection-start-column="17" selection-end-line="173" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cartpole/Q_table_Q_cartpole.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1764">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cartpole/saved_results/results_Q_cartpole.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Cartpole/Q_learning_agent.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1190">
-          <caret line="150" column="17" lean-forward="false" selection-start-line="150" selection-start-column="17" selection-end-line="150" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="584">
+          <caret line="211" column="27" lean-forward="false" selection-start-line="211" selection-start-column="27" selection-end-line="211" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
