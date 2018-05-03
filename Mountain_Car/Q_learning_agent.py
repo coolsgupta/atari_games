@@ -24,6 +24,7 @@ class DQNAgent:
         self.t = 0
         self.learning = True
         self.episode = 0
+        self.testing = False
 
 
 
@@ -43,11 +44,11 @@ class DQNAgent:
         return state
 
     def get_maxQ(self,state):
+        max_act = []
         if not state in self.Q_table:
             self.createQ(state)
         maxQ = max(self.Q_table[state].values())
-        max_act = []
-        for act,val in self.Q_table[state].items():
+        for act, val in self.Q_table[state].items():
             if val == maxQ:
                 max_act.append(act)
         return maxQ, max_act
@@ -71,6 +72,37 @@ class DQNAgent:
             maxQ, maxQ_action = self.get_maxQ(next_state)
             self.Q_table[state][action] = self.Q_table[state][action] + (self.learning_rate*(reward + (self.gamma*maxQ)))
 
+
+    def get_reward(self, state, action, next_state):
+        if action == 0:
+            if (state[0][1] > 0):
+                return -1
+
+            elif (state[0][1] == 0):
+                if (next_state[0][0] < state[0][0]):
+                    return 1
+                else :
+                    return -1
+            elif (state[0][1] < 0):
+                return 1
+
+        elif action == 1:
+            if (state[0][1] == 0):
+                return 1
+            else:
+                return -1
+
+        elif action == 2:
+            if (state[0][1] > 0):
+                return 1
+
+            elif (state[0][1] == 0):
+                if (next_state[0][0] > state[0][0]):
+                    return 1
+                else:
+                    return -1
+            elif (state[0][1] < 0):
+                return -1
 
     def remember(self, state, action, reward, next_state, done):
         self.memory.append((state, action, reward, next_state, done))
@@ -98,7 +130,7 @@ env = gym.make('MountainCar-v0')
 state_size = env.observation_space.shape[0]
 action_size = env.action_space.n
 # creating file for storing results
-fieldnames = ['episode', 'epsilon', 'score', 'average_score', 'total_reward', 'average_reward']
+fieldnames = ['episode', 'epsilon', 'score', 'average_score', 'total_reward', 'average_reward', 'Q_table_length']
 result_writer = open('results_Q_learning_agent.csv', 'w', newline='')
 writer = csv.DictWriter(result_writer, fieldnames)
 writer.writeheader()
@@ -119,6 +151,7 @@ while agent.epsilon > agent.epsilon_min:
     state = np.reshape(state, [1, state_size])
     total_reward = 0
     score = state[0][0]
+    t_state = state
     state = agent.build_state(state)
     # time_t represents each frame of the game
     # Our goal is to keep the pole upright as long as possible until score of 500
@@ -141,13 +174,15 @@ while agent.epsilon > agent.epsilon_min:
         total_reward += reward
         sc = next_state[0][0]
         score = sc if sc > score else score
+        created_reward = agent.get_reward(t_state,action,next_state)
+        t_state = next_state
         next_state = agent.build_state(next_state)
 
         # Remember the previous state, action, reward, and done
-        agent.remember(state, action, sc, next_state, done)
+        agent.remember(state, action, created_reward, next_state, done)
 
         #updating Q-table
-        agent.learn(state,action,reward,next_state)
+        agent.learn(state,action,created_reward,next_state)
         # make next_state the new current state for the next frame.
         state = next_state
 
@@ -163,18 +198,16 @@ while agent.epsilon > agent.epsilon_min:
             # result = ('Episode :', str(e), ' score:', str(score), ' epsilon:', '1.0', '\n')
             writer.writerow(
                 {'episode': agent.episode, 'epsilon': agent.epsilon, 'score': score, 'average_score': average_score,
-                 'total_reward': total_reward, 'average_reward': average_reward}
+                 'total_reward': total_reward, 'average_reward': average_reward, 'Q_table_length' : agent.Q_table.__len__()}
             )
             break
     agent.replay()
-agent.Q_table = {'Q_table': agent.Q_table}
-with open('Q_table.txt', 'w+') as Q_table_file:
-    Q_table_file.write(json.dumps(agent.Q_table))
 
 print("///////////TESTING/////////")
 agent.epsilon = 0.0
 cummulative_score = 0
 cummulative_reward = 0
+agent.testing = True
 test_results = open('test_results_Q_learning_agent.csv', 'w',newline='')
 test_result_writer = csv.DictWriter(test_results,fieldnames)
 test_result_writer.writeheader()
@@ -217,5 +250,10 @@ for e in range(50):
             print("episode: {}, score: {}, e: {:.2}"
                   .format(e, score, agent.epsilon))
             test_result_writer.writerow({'episode':e, 'epsilon':agent.epsilon, 'score':score,'average_score':average_score,
-                                    'total_reward': total_reward, 'average_reward':average_reward})
+                                    'total_reward': total_reward, 'average_reward':average_reward, 'Q_table_length' : agent.Q_table.__len__()})
             break
+
+# store Q_table:
+agent.Q_table = {'Q_table': agent.Q_table}
+with open('Q_table.txt', 'w+') as Q_table_file:
+    Q_table_file.write(json.dumps(agent.Q_table))

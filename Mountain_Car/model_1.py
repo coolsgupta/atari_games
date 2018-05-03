@@ -17,6 +17,7 @@ for e in range(50):
     state = np.reshape(state, [1,state_size])
     total_reward = 0
     score = state[0][0]
+    env.render()
     for time in range(200):
         action = random.randrange(env.action_space.n)
         next_state,reward,done,_ = env.step(action)
@@ -25,6 +26,7 @@ for e in range(50):
         total_reward += reward
         state = next_state
         score = state[0][0] if state[0][0] > score else score
+        env.render()
         if done:
             cumulative_reward += total_reward
             average_reward = cumulative_reward / (e + 1)

@@ -11,12 +11,14 @@ cumulative_score = 0
 for e in range(50):
     state = env.reset()
     total_reward = 0
+    env.render()
     for time in range(500):
         action = random.randrange(env.action_space.n)
         next_state,reward,done,_ = env.step(action)
         reward = reward if not done else -10
         total_reward += reward
         state = next_state
+        env.render()
         if done:
             cumulative_reward += total_reward
             average_reward = cumulative_reward / (e + 1)

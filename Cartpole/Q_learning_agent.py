@@ -19,11 +19,12 @@ class DQNAgent:
         self.gamma = 0.95    # discount rate
         self.epsilon = 1.0  # exploration rate
         self.epsilon_min = 0.01
-        self.epsilon_decay = 0.9995
-        self.learning_rate = 0.01
+        self.epsilon_decay = 0.995
+        self.learning_rate = 0.001
         self.t = 0
         self.learning = True
         self.episode = 0
+        self.testing = False
 
 
 
@@ -32,8 +33,8 @@ class DQNAgent:
             self.epsilon = 0.0
             self.learning_rate = 0.0
         else:
-            #self.epsilon = math.exp(-self.learning_rate * (self.episode))
-            self.epsilon *= self.epsilon_decay
+            self.epsilon = math.exp(-self.learning_rate * (self.episode))
+            #self.epsilon *= self.epsilon_decay
 
     def build_state(self, observed_state):
         state = (str(round(observed_state[0],5)),str(round(observed_state[1],5)),str(round(observed_state[2],5)),str(round(observed_state[3],5)))
@@ -42,13 +43,18 @@ class DQNAgent:
         return state
 
     def get_maxQ(self,state):
-        if not state in self.Q_table:
-            self.createQ(state)
-        maxQ = max(self.Q_table[state].values())
         max_act = []
-        for act,val in self.Q_table[state].items():
-            if val == maxQ:
-                max_act.append(act)
+        if self.testing:
+            if not state in self.Q_table:
+                maxQ = 0
+                max_act.append(random.choice(range(self.action_size)))
+        else:
+            if not state in self.Q_table:
+                self.createQ(state)
+            maxQ = max(self.Q_table[state].values())
+            for act,val in self.Q_table[state].items():
+                if val == maxQ:
+                    max_act.append(act)
         return maxQ, max_act
 
     def createQ(self, state):
@@ -103,12 +109,11 @@ scores = []
 #storing results
 result_file = open('results_Q_cartpole.txt','w')
 result_csv = open('results_Q_cartpole.csv', 'w',newline='')
-fieldnames = ['episode', 'epsilon', 'score', 'average_score', 'total_reward', 'average_reward']
+fieldnames = ['episode', 'epsilon', 'score', 'average_score', 'total_reward', 'average_reward', 'Q_table_length']
 result_writer = csv.DictWriter(result_csv, fieldnames)
 result_writer.writeheader()
 cummulative_score = 0
 cummulative_reward = 0
-
 # Iterate the game
 agent.episode = 1
 
@@ -159,18 +164,15 @@ while agent.epsilon > agent.epsilon_min:
             result_file.write(''.join(result))
             result_writer.writerow(
                 {'episode': agent.episode, 'epsilon': agent.epsilon, 'score': time, 'average_score': average_score,
-                 'total_reward': total_reward, 'average_reward': average_reward})
+                 'total_reward': total_reward, 'average_reward': average_reward, 'Q_table_length' : agent.Q_table.__len__()})
 
             break
 
     agent.replay()
-# store Q_table as txt in json format
-agent.Q_table = {'Q_table': agent.Q_table}
-with open('Q_table_Q_cartpole.txt', 'w+') as Q_table_file:
-    Q_table_file.write(json.dumps(agent.Q_table))
 
 # testing trials
 print("///////////TESTING/////////")
+agent.testing = True
 agent.epsilon = 0.0
 cummulative_score = 0
 cummulative_reward = 0
@@ -211,5 +213,11 @@ for e in range(50):
             print("episode: {}, score: {}, e: {:.2}"
                   .format(e, time, agent.epsilon))
             test_result_writer.writerow({'episode':e, 'epsilon':agent.epsilon, 'score':time,'average_score':average_score,
-                                    'total_reward': total_reward, 'average_reward':average_reward})
+                                    'total_reward': total_reward, 'average_reward':average_reward, 'Q_table_length' : agent.Q_table.__len__()})
             break
+
+# store Q_table as txt in json format
+agent.Q_table = {'Q_table': agent.Q_table}
+with open('Q_table_Q_cartpole.txt', 'w+') as Q_table_file:
+    Q_table_file.write(json.dumps(agent.Q_table))
+
